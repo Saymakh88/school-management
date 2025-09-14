@@ -2,9 +2,8 @@ import mysql from "mysql2/promise";
 
 export async function connectDB() {
   if (!process.env.MYSQL_URL) {
-    // Running locally without access → throw error
     throw new Error(
-      "MYSQL_URL not found. This project only runs in production."
+      "MYSQL_URL environment variable not defined. Project runs only in production."
     );
   }
 
