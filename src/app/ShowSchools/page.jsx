@@ -4,31 +4,36 @@ import { useEffect, useState } from "react";
 export default function ShowSchools() {
   const [schools, setSchools] = useState([]);
 
+  const fetchSchools = async () => {
+    const res = await fetch("/api/GetSchools");
+    const data = await res.json();
+    setSchools(data);
+  };
+
+  const deleteSchool = async (id) => {
+    await fetch(`/api/deleteSchool?id=${id}`, { method: "DELETE" });
+    fetchSchools();
+  };
+
   useEffect(() => {
-    fetch("/api/GetSchools")
-      .then((res) => res.json())
-      .then((data) => setSchools(data));
+    fetchSchools();
   }, []);
 
   return (
-    <div className="p-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 bg-gray-100 min-h-screen bg-gray-200">
+    <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
       {schools.map((s) => (
-        <div
-          key={s.id}
-          className="bg-white shadow-lg rounded-lg overflow-hidden"
-        >
+        <div key={s.id} className="border p-4 rounded-lg shadow-md">
           <img
             src={s.image}
-            alt={s.name}
-            className="w-full max-w-sm h-auto object-cover rounded-md"
+            className="w-full h-40 object-cover rounded-md mb-2"
           />
-          <div className="p-4">
-            <h2 className="text-lg font-bold text-blue-600">{s.name}</h2>
-            <p className="text-gray-600">{s.address}</p>
-            <p className="text-gray-600">
-              {s.city}, {s.state}
-            </p>
-          </div>
+          <h2 className="font-bold text-lg">{s.name}</h2>
+          <p>
+            {s.address}, {s.city}
+          </p>
+          <p>{s.state}</p>
+          <p>{s.contact}</p>
+          <p>{s.email_id}</p>
         </div>
       ))}
     </div>
