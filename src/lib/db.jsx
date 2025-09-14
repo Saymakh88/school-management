@@ -1,10 +1,19 @@
 import mysql from "mysql2/promise";
 
 export async function connectDB() {
-  return mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
+  if (!process.env.MYSQL_URL) {
+    throw new Error("MYSQL_URL environment variable not defined");
+  }
+
+  const url = new URL(process.env.MYSQL_URL);
+
+  const connection = await mysql.createConnection({
+    host: url.hostname,
+    port: url.port,
+    user: url.username,
+    password: url.password,
+    database: url.pathname.replace("/", ""),
   });
+
+  return connection;
 }
