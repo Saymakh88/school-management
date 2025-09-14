@@ -1,4 +1,3 @@
-=======
 # 🏫 School Management Mini Project
 
 This is a mini full-stack project built using **Next.js (App Router)** and **MySQL**.  
