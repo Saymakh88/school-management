@@ -55,7 +55,7 @@ id, name, address, city, state, contact, email_id, image
 
 - Update **lib/db.js** with your MySQL credentials
 
-##Run the Project
+## Run the Project
 ```bash
 npm run dev
 ```
