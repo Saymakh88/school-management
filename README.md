@@ -43,15 +43,53 @@ lib/
 ```bash
 git clone https://github.com/YourUsername/school-management.git
 cd school-management
+```
 
 ## Set up MySQL database
 
 Create a database named schooldb
 
-Create a table schools with columns:
+Create a table **schools** with columns:
 id, name, address, city, state, contact, email_id, image
 
-Configure database connection
+## Configure database connection
+
+Update lib/db.js with your MySQL credentials
+
+##Run the Project
+```bash
+npm run dev
+```
+## 🖥 Pages
+
+-**Add School**
+
+Form to input school details (name, address, city, state, contact, email, image)
+
+Saves the data to MySQL database
+
+-**Show Schools**
+
+Displays all schools in a responsive grid
+
+Shows image, name, address, contact, and email
+
+Delete functionality to remove a school
+
+## 📌Features
+Add new schools with validation
+
+Display all schools in a responsive layout
+
+Delete schools easily
+
+Navigation bar across pages
+
+
+
+
+
+
 
 Update lib/db.js with your MySQL credentials
 
